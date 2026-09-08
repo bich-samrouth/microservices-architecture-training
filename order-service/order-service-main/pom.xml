@@ -10,5 +10,28 @@
     </parent>
 
     <artifactId>order-service-main</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>order-service-restapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>order-service-persistence</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>order-service-messaging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>order-domain-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>order-application-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

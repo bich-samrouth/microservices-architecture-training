@@ -8,13 +8,15 @@
         <artifactId>order-service-domain</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <artifactId>order-application-service</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>order-domain-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>common-domain</artifactId>
         </dependency>
     </dependencies>
 </project>

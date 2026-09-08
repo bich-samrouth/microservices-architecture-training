@@ -39,6 +39,31 @@
                 <artifactId>order-domain-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>order-service-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>order-service-main</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>order-service-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>order-service-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>order-service-restapi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
