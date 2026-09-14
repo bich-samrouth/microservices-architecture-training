@@ -30,7 +30,6 @@
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>order-application-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>

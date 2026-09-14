@@ -1,4 +1,4 @@
-package co.khmer.samrouth.exception;
+package co.khmer.samrouth.domain.exception;
 
 public class DomainException extends RuntimeException {
 

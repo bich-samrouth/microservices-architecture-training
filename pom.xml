@@ -33,6 +33,11 @@
                 <artifactId>common-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>common-restapi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Inject dependency order domain core-->
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>
@@ -45,7 +50,7 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>co.istad.chanchhaya</groupId>
+                <groupId>co.khmer.samrouth</groupId>
                 <artifactId>order-application-service</artifactId>
                 <version>${project.version}</version>
             </dependency>

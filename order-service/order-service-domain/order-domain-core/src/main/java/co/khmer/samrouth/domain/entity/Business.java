@@ -1,7 +1,6 @@
 package co.khmer.samrouth.domain.entity;
 
-import co.khmer.samrouth.entity.AggregateRoot;
-import co.khmer.samrouth.valueobject.BusinessId;
+import co.khmer.samrouth.domain.valueobject.BusinessId;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package co.khmer.samrouth.domain.event;
 
-import co.khmer.samrouth.event.DomainEvent;
 import co.khmer.samrouth.domain.entity.Order;
 
 import java.time.ZonedDateTime;

@@ -1,8 +1,7 @@
 package co.khmer.samrouth.domain.entity;
 
-import co.khmer.samrouth.entity.AggregateRoot;
 import co.khmer.samrouth.domain.excetion.OrderDomainException;
-import co.khmer.samrouth.valueobject.*;
+import co.khmer.samrouth.domain.valueobject.*;
 
 import java.util.List;
 import java.util.UUID;

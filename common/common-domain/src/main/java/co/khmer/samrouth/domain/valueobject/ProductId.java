@@ -1,4 +1,4 @@
-package co.khmer.samrouth.valueobject;
+package co.khmer.samrouth.domain.valueobject;
 
 import java.util.UUID;
 

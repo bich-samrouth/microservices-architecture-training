@@ -1,6 +1,6 @@
 package co.khmer.samrouth.order.persistence.entity;
 
-import co.khmer.samrouth.valueobject.OrderStatus;
+import co.khmer.samrouth.domain.valueobject.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

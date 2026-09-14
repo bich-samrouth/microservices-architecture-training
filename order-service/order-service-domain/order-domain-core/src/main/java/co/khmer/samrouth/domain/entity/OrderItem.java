@@ -1,9 +1,8 @@
 package co.khmer.samrouth.domain.entity;
 
-import co.khmer.samrouth.entity.BaseEntity;
-import co.khmer.samrouth.valueobject.Money;
-import co.khmer.samrouth.valueobject.OrderId;
-import co.khmer.samrouth.valueobject.OrderItemId;
+import co.khmer.samrouth.domain.valueobject.Money;
+import co.khmer.samrouth.domain.valueobject.OrderId;
+import co.khmer.samrouth.domain.valueobject.OrderItemId;
 
 public class OrderItem extends BaseEntity<OrderItemId> {
     private OrderId orderId;

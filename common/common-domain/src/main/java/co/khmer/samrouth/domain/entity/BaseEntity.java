@@ -1,4 +1,4 @@
-package co.khmer.samrouth.entity;
+package co.khmer.samrouth.domain.entity;
 
 import java.util.Objects;
 

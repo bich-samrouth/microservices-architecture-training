@@ -1,8 +1,7 @@
 package co.khmer.samrouth.domain.entity;
 
-import co.khmer.samrouth.entity.BaseEntity;
-import co.khmer.samrouth.valueobject.Money;
-import co.khmer.samrouth.valueobject.ProductId;
+import co.khmer.samrouth.domain.valueobject.Money;
+import co.khmer.samrouth.domain.valueobject.ProductId;
 
 public class Product extends BaseEntity<ProductId> {
     private final String name;

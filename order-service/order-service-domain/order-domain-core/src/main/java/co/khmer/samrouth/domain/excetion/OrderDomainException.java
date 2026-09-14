@@ -1,6 +1,6 @@
 package co.khmer.samrouth.domain.excetion;
 
-import co.khmer.samrouth.exception.DomainException;
+import co.khmer.samrouth.domain.exception.DomainException;
 
 public class OrderDomainException extends DomainException {
     public OrderDomainException(String message) {

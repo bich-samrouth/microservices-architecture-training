@@ -1,4 +1,4 @@
-package co.khmer.samrouth.port.output;
+package co.khmer.samrouth.order.domain.port.output;
 
 import co.khmer.samrouth.domain.entity.Order;
 
