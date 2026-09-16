@@ -31,18 +31,18 @@
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>order-application-service</artifactId>
         </dependency>
-
+        <!-- Dependency import from library -->
+        <!-- SPRING WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!-- POSTGRESQL DRIVER -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
