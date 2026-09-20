@@ -1,26 +1,20 @@
 package co.khmer.samrouth.domain.entity;
 
-import co.khmer.samrouth.domain.valueobject.BusinessId;
+import co.khmer.samrouth.domain.valueobject.CustomerId;
 
-import java.util.List;
-
-public class Business extends AggregateRoot<BusinessId> {
-    private final List<Product> products;
-    private final boolean active;
+public class Customer extends AggregateRoot<CustomerId> {
     private final String userName;
     private final String familyName;
     private final String givenName;
 
-    private Business(Builder builder) {
+    private Customer(Builder builder) {
         super.setId(builder.id);
-        products = builder.products;
-        active = builder.active;
         userName = builder.userName;
         familyName = builder.familyName;
         givenName = builder.givenName;
     }
 
-    public static Builder builder() {
+    public static Builder builder(){
         return new Builder();
     }
 
@@ -36,19 +30,9 @@ public class Business extends AggregateRoot<BusinessId> {
         return givenName;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
 
     public static final class Builder {
-        private BusinessId id;
-        private List<Product> products;
-        private boolean active;
+        private CustomerId id;
         private String userName;
         private String familyName;
         private String givenName;
@@ -56,18 +40,8 @@ public class Business extends AggregateRoot<BusinessId> {
         private Builder() {
         }
 
-        public Builder id(BusinessId val) {
+        public Builder id(CustomerId val) {
             id = val;
-            return this;
-        }
-
-        public Builder products(List<Product> val) {
-            products = val;
-            return this;
-        }
-
-        public Builder active(boolean val) {
-            active = val;
             return this;
         }
 
@@ -86,8 +60,8 @@ public class Business extends AggregateRoot<BusinessId> {
             return this;
         }
 
-        public Business build() {
-            return new Business(this);
+        public Customer build() {
+            return new Customer(this);
         }
     }
 }

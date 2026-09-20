@@ -1,6 +1,6 @@
 package co.khmer.samrouth.order.domain.port.input;
 
-public interface CreateOrderUseCase {
+public interface ExplicitPort {
     // create execute
     void execute();
 }

@@ -21,6 +21,10 @@ public class Product extends BaseEntity<ProductId> {
         price = builder.price;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
 
     public static final class Builder {
         private ProductId id;
@@ -28,10 +32,6 @@ public class Product extends BaseEntity<ProductId> {
         private Money price;
 
         private Builder() {
-        }
-
-        public static Builder builder() {
-            return new Builder();
         }
 
         public Builder id(ProductId val) {
