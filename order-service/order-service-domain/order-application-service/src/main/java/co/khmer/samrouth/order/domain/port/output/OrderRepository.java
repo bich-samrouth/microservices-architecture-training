@@ -5,5 +5,5 @@ import co.khmer.samrouth.domain.entity.Order;
 public interface OrderRepository {
 
     // save order
-    void saveOrder(Order order);
+    Order saveOrder(Order order);
 }

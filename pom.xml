@@ -40,6 +40,11 @@
                 <artifactId>common-restapi</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>common-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Inject dependency order domain core-->
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>

@@ -2,6 +2,7 @@ package co.khmer.samrouth.domain.valueobject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 public record Money(BigDecimal amount) {
 
@@ -36,5 +37,17 @@ public record Money(BigDecimal amount) {
     private BigDecimal setScale(BigDecimal inputAmount){
         return inputAmount.setScale(2, RoundingMode.HALF_EVEN);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Money(BigDecimal amount1))) return false;
+        return Objects.equals(setScale(amount), setScale(amount1));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(setScale(amount));
+    }
+
 
 }

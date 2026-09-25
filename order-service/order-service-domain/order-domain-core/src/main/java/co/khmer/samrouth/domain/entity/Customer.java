@@ -3,23 +3,23 @@ package co.khmer.samrouth.domain.entity;
 import co.khmer.samrouth.domain.valueobject.CustomerId;
 
 public class Customer extends AggregateRoot<CustomerId> {
-    private final String userName;
+    private final String username;
     private final String familyName;
     private final String givenName;
 
     private Customer(Builder builder) {
         super.setId(builder.id);
-        userName = builder.userName;
+        username = builder.username;
         familyName = builder.familyName;
         givenName = builder.givenName;
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public String getFamilyName() {
@@ -33,7 +33,7 @@ public class Customer extends AggregateRoot<CustomerId> {
 
     public static final class Builder {
         private CustomerId id;
-        private String userName;
+        private String username;
         private String familyName;
         private String givenName;
 
@@ -45,8 +45,8 @@ public class Customer extends AggregateRoot<CustomerId> {
             return this;
         }
 
-        public Builder userName(String val) {
-            userName = val;
+        public Builder username(String val) {
+            username = val;
             return this;
         }
 

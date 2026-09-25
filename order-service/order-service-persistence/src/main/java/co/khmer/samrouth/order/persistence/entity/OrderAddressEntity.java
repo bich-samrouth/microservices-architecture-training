@@ -15,13 +15,12 @@ import java.util.UUID;
 @Table(name = "order_addresses")
 public class OrderAddressEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String street;
     private String postalCode;
     private String city;
     private BigDecimal price;
 
-    @OneToOne
+    @OneToOne(mappedBy = "orderAddress")
     private OrderEntity order;
 }

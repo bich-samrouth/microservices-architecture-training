@@ -21,6 +21,7 @@ import java.util.UUID;
 public class BusinessEntity {
     @Id
     private UUID businessId;
+
     @Id
     private UUID productId;
 
