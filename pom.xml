@@ -17,6 +17,7 @@
     <modules>
         <module>common</module>
         <module>order-service</module>
+        <module>payment-service</module>
     </modules>
 
     <properties>
@@ -45,12 +46,7 @@
                 <artifactId>common-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--Inject dependency order domain core-->
-            <dependency>
-                <groupId>co.khmer.samrouth</groupId>
-                <artifactId>order-domain-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+            <!--Inject dependency order service-->
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>
                 <artifactId>order-service-domain</artifactId>
@@ -59,6 +55,11 @@
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>
                 <artifactId>order-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>order-domain-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -79,6 +80,42 @@
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>
                 <artifactId>order-service-restapi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--Inject dependency payment service-->
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>payment-service-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>payment-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>payment-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>payment-service-main</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>payment-service-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>payment-service-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>payment-service-restapi</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

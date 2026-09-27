@@ -1,7 +1,7 @@
 package co.khmer.samrouth.order;
 
-import co.khmer.samrouth.domain.service.OrderDomainService;
-import co.khmer.samrouth.domain.service.OrderDomainServiceImp;
+import co.khmer.samrouth.ecommerce.order.service.OrderDomainService;
+import co.khmer.samrouth.ecommerce.order.service.OrderDomainServiceImp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
