@@ -4,6 +4,7 @@ import co.khmer.samrouth.ecommerce.order.entity.AggregateRoot;
 import co.khmer.samrouth.ecommerce.order.valueobject.*;
 import co.khmer.samrouth.ecommerce.payment.exception.PaymentDomainException;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -31,50 +32,41 @@ public class Payment extends AggregateRoot<PaymentId> {
     }
 
     public void validatePayment(){
+        validateIsNew();
+        validateIsInitialized();
         validateTotalPrice();
     }
 
     public void  initializePayment(){
-        validateIsNew();
         setId(new PaymentId(UUID.randomUUID()));
         paymentStatus = PaymentStatus.PENDING;
-        createdAt = ZonedDateTime.now();
+        createdAt = ZonedDateTime.now(ZoneId.of("UTC"));
     }
 
     public void updateStatus(PaymentStatus newStatus) {
         validateIsInitialized();
-
-        switch (newStatus) {
-            case COMPLETED -> complete();
-            case CANCELLED -> cancel();
-            case FAILED    -> fail();
-            default -> throw new PaymentDomainException(
-                    "Payment cannot be changed to " + newStatus);
+        if (!paymentStatus.canTransitionTo(newStatus)) {
+            throw new PaymentDomainException(
+                    "Payment cannot change from " + paymentStatus + " to " + newStatus);
         }
+
+        paymentStatus = newStatus;
+        updatedAt = ZonedDateTime.now(ZoneId.of("UTC"));
     }
 
     // Completed
     public void complete() {
-        transitionFromPending(PaymentStatus.COMPLETED, "complete");
+        updateStatus(PaymentStatus.COMPLETED);
     }
 
     // Cancel
     public void cancel() {
-        transitionFromPending(PaymentStatus.CANCELLED, "cancel");
+        updateStatus(PaymentStatus.CANCELLED);
     }
 
     // Fail
     public void fail() {
-        transitionFromPending(PaymentStatus.FAILED, "fail");
-    }
-
-    private void transitionFromPending(PaymentStatus target, String operation) {
-        if (paymentStatus != PaymentStatus.PENDING) {
-            throw new PaymentDomainException(
-                    "Payment is not in correct state for " + operation + " operation");
-        }
-        paymentStatus = target;
-        updatedAt = ZonedDateTime.now();
+        updateStatus(PaymentStatus.FAILED);
     }
 
     // Payment has no id and no status yet

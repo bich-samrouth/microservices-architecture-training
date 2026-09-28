@@ -17,6 +17,10 @@
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>common-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>order-domain-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
