@@ -4,7 +4,7 @@ import co.khmer.samrouth.ecommerce.order.entity.AggregateRoot;
 import co.khmer.samrouth.ecommerce.order.valueobject.CreditEntryId;
 import co.khmer.samrouth.ecommerce.order.valueobject.CustomerId;
 import co.khmer.samrouth.ecommerce.order.valueobject.Money;
-import co.khmer.samrouth.ecommerce.payment.excetion.PaymentDomainException;
+import co.khmer.samrouth.ecommerce.payment.exception.PaymentDomainException;
 
 public class CreditEntry extends AggregateRoot<CreditEntryId> {
     private final CustomerId customerId;

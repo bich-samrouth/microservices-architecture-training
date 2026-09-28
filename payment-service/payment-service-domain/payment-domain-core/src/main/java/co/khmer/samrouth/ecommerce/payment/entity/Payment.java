@@ -2,7 +2,7 @@ package co.khmer.samrouth.ecommerce.payment.entity;
 
 import co.khmer.samrouth.ecommerce.order.entity.AggregateRoot;
 import co.khmer.samrouth.ecommerce.order.valueobject.*;
-import co.khmer.samrouth.ecommerce.payment.excetion.PaymentDomainException;
+import co.khmer.samrouth.ecommerce.payment.exception.PaymentDomainException;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -26,39 +26,68 @@ public class Payment extends AggregateRoot<PaymentId> {
         updatedAt = builder.updatedAt;
     }
 
-
     public static Builder builder() {
         return new Builder();
     }
 
     public void validatePayment(){
-        validateInitialPayment();
         validateTotalPrice();
     }
 
     public void  initializePayment(){
-        validateInitialPayment();
+        validateIsNew();
         setId(new PaymentId(UUID.randomUUID()));
         paymentStatus = PaymentStatus.PENDING;
         createdAt = ZonedDateTime.now();
     }
 
-    public void updateStatus(){
-        validateInitialPayment();
-        switch (paymentStatus) {
+    public void updateStatus(PaymentStatus newStatus) {
+        validateIsInitialized();
+
+        switch (newStatus) {
             case COMPLETED -> complete();
             case CANCELLED -> cancel();
-            case FAILED -> fail();
-            case PENDING -> throw new PaymentDomainException(
-                    "Payment cannot be changed back to PENDING"
-            );
+            case FAILED    -> fail();
+            default -> throw new PaymentDomainException(
+                    "Payment cannot be changed to " + newStatus);
         }
     }
 
-    // Validate Initialize Payment
-    private void validateInitialPayment(){
+    // Completed
+    public void complete() {
+        transitionFromPending(PaymentStatus.COMPLETED, "complete");
+    }
+
+    // Cancel
+    public void cancel() {
+        transitionFromPending(PaymentStatus.CANCELLED, "cancel");
+    }
+
+    // Fail
+    public void fail() {
+        transitionFromPending(PaymentStatus.FAILED, "fail");
+    }
+
+    private void transitionFromPending(PaymentStatus target, String operation) {
+        if (paymentStatus != PaymentStatus.PENDING) {
+            throw new PaymentDomainException(
+                    "Payment is not in correct state for " + operation + " operation");
+        }
+        paymentStatus = target;
+        updatedAt = ZonedDateTime.now();
+    }
+
+    // Payment has no id and no status yet
+    private void validateIsNew(){
         if(paymentStatus != null || super.getId() != null){
             throw new PaymentDomainException("Payment is not in correct status for initialization");
+        }
+    }
+
+    // Payment must already have an id and status
+    private void validateIsInitialized() {
+        if (paymentStatus == null || getId() == null) {
+            throw new PaymentDomainException("Payment is not initialized");
         }
     }
 
@@ -67,42 +96,6 @@ public class Payment extends AggregateRoot<PaymentId> {
         if(price == null || !price.isGreaterThanZero()){
             throw new PaymentDomainException("Total price must be greeter than zero");
         }
-    }
-
-    // Completed
-    public void complete() {
-        if (paymentStatus != PaymentStatus.PENDING) {
-            throw new PaymentDomainException(
-                    "Payment is not in correct state for complete operation"
-            );
-        }
-
-        paymentStatus = PaymentStatus.COMPLETED;
-        updatedAt = ZonedDateTime.now();
-    }
-
-    // Cancel
-    public void cancel() {
-        if (paymentStatus != PaymentStatus.PENDING) {
-            throw new PaymentDomainException(
-                    "Payment is not in correct state for cancel operation"
-            );
-        }
-
-        paymentStatus = PaymentStatus.CANCELLED;
-        updatedAt = ZonedDateTime.now();
-    }
-
-    // Fail
-    public void fail() {
-        if (paymentStatus != PaymentStatus.PENDING) {
-            throw new PaymentDomainException(
-                    "Payment is not in correct state for fail operation"
-            );
-        }
-
-        paymentStatus = PaymentStatus.FAILED;
-        updatedAt = ZonedDateTime.now();
     }
 
     public OrderId getOrderId() {

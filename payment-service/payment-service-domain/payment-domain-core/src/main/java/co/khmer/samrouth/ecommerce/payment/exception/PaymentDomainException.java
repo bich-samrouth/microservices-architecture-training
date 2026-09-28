@@ -1,4 +1,4 @@
-package co.khmer.samrouth.ecommerce.payment.excetion;
+package co.khmer.samrouth.ecommerce.payment.exception;
 
 import co.khmer.samrouth.ecommerce.order.exception.DomainException;
 
