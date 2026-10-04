@@ -10,16 +10,11 @@
     </parent>
 
     <artifactId>payment-service-main</artifactId>
-    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
-            <artifactId>payment-application-service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>co.khmer.samrouth</groupId>
-            <artifactId>payment-domain-core</artifactId>
+            <artifactId>payment-service-restapi</artifactId>
         </dependency>
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
@@ -27,11 +22,46 @@
         </dependency>
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
-            <artifactId>payment-service-messaging</artifactId>
+            <artifactId>payment-domain-core</artifactId>
         </dependency>
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
-            <artifactId>payment-service-restapi</artifactId>
+            <artifactId>payment-application-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>payment-service-messaging</artifactId>
+        </dependency>
+        <!-- SPRING WEB -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- POSTGRESQL DRIVER -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- Nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- OpenFeign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- Spring Cloud LoadBalancer -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
     </dependencies>
 

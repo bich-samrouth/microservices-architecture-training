@@ -18,6 +18,7 @@
         <module>common</module>
         <module>order-service</module>
         <module>payment-service</module>
+        <module>customer-service</module>
     </modules>
 
     <properties>
@@ -119,6 +120,37 @@
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>
                 <artifactId>payment-service-restapi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--Inject dependency customer service-->
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>customer-service-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>customer-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>customer-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>customer-service-main</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>customer-service-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>customer-service-restapi</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--  Spring cloud-->

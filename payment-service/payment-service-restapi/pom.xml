@@ -10,20 +10,32 @@
     </parent>
 
     <artifactId>payment-service-restapi</artifactId>
-    <packaging>pom</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>payment-application-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>common-persistence</artifactId>
+        </dependency>
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>common-restapi</artifactId>
         </dependency>
         <dependency>
-            <groupId>co.khmer.samrouth</groupId>
-            <artifactId>payment-service-persistence</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
-            <groupId>co.khmer.samrouth</groupId>
-            <artifactId>payment-application-service</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

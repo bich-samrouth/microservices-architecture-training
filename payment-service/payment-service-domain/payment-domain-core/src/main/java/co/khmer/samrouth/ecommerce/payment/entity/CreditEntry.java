@@ -27,7 +27,7 @@ public class CreditEntry extends AggregateRoot<CreditEntryId> {
             );
         }
 
-        if (amount.isGreaterThanZero()) {
+        if (!amount.isGreaterThanZero()) {
             throw new PaymentDomainException(
                     "Credit amount must be greater than zero"
             );
@@ -42,13 +42,13 @@ public class CreditEntry extends AggregateRoot<CreditEntryId> {
             );
         }
 
-        if (amount.isGreaterThanZero()) {
+        if (!amount.isGreaterThanZero()) {
             throw new PaymentDomainException(
                     "Credit amount must be greater than zero"
             );
         }
 
-        if (totalCreditAmount.isGreaterThan(amount)) {
+        if (amount.isGreaterThan(totalCreditAmount)) {
             throw new PaymentDomainException(
                     "Insufficient credit amount"
             );

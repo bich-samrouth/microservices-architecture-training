@@ -33,7 +33,6 @@ public class Payment extends AggregateRoot<PaymentId> {
 
     public void validatePayment(){
         validateIsNew();
-        validateIsInitialized();
         validateTotalPrice();
     }
 
@@ -86,7 +85,7 @@ public class Payment extends AggregateRoot<PaymentId> {
     // Validate Price For Payment
     private void validateTotalPrice(){
         if(price == null || !price.isGreaterThanZero()){
-            throw new PaymentDomainException("Total price must be greeter than zero");
+            throw new PaymentDomainException("Total price must be greater than zero");
         }
     }
 
