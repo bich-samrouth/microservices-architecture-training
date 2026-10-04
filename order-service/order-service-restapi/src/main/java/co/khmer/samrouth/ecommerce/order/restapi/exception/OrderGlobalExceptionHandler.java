@@ -1,6 +1,7 @@
 package co.khmer.samrouth.ecommerce.order.restapi.exception;
 
 import co.khmer.samrouth.ecommerce.order.excetion.OrderDomainException;
+import co.khmer.samrouth.ecommerce.order.excetion.OrderNotFoundException;
 import co.khmer.samrouth.persistence.business.exception.BusinessPersistenceException;
 import co.khmer.samrouth.restapi.dto.RestApiErrorResponse;
 import co.khmer.samrouth.restapi.exception.GlobalExceptionHandler;
@@ -11,6 +12,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class OrderGlobalExceptionHandler extends GlobalExceptionHandler {
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(OrderNotFoundException.class)
+    public RestApiErrorResponse<?> handleOrderNotFoundException(OrderNotFoundException e) {
+        return RestApiErrorResponse.builder()
+                .code(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .message(e.getMessage())
+                .build();
+    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(OrderDomainException.class)

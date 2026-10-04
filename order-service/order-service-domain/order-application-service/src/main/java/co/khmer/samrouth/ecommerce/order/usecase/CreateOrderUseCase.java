@@ -77,5 +77,5 @@ public class CreateOrderUseCase {
 
 
 // Insert Update Deleted -> Command -> Transaction
-// Select -> Query -> Transaction read only
+// Select -> Query -> Transaction readonly
 // Pattern : CQRS = Command Query Responsibility SegregationL

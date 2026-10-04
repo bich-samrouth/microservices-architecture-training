@@ -49,6 +49,8 @@ public interface OrderPersistenceMapper {
     @Mapping(target = "failureMessages", source = "failureMessages", qualifiedByName = "mapFailureMessagesToList")
     Order orderEntityToOrder(OrderEntity orderEntity);
 
+    List<Order> orderEntityListToOrderList(List<OrderEntity> orderEntities);
+
     // Issue Map List<OrderItemEntity> to List<OrderItem>
     @Mapping(target = "id.value", source = "id")
     @Mapping(target = "product.id.value", source = "productId")

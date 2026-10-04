@@ -3,6 +3,8 @@ package co.khmer.samrouth.ecommerce.order.persistence.repository;
 import co.khmer.samrouth.ecommerce.order.persistence.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 // Benefit of using Spring Date JPA
@@ -12,4 +14,6 @@ import java.util.UUID;
 // 4. Object Relational Mapping (ORM) Hibernate
 // 5. Specification (dynamic query)
 public interface OrderJpaRepository extends JpaRepository<OrderEntity, UUID> {
+    Optional<OrderEntity> findByTrackingId(UUID trackingId);
+    List<OrderEntity> findByCustomerId(UUID customerId);
 }
