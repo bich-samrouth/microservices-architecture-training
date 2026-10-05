@@ -19,6 +19,7 @@
         <module>order-service</module>
         <module>payment-service</module>
         <module>customer-service</module>
+        <module>business-service</module>
     </modules>
 
     <properties>
@@ -151,6 +152,32 @@
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>
                 <artifactId>customer-service-restapi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--  Inject dependency business service -->
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>business-service-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>business-service-main</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>business-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>business-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>business-service-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--  Spring cloud-->
