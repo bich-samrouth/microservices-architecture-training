@@ -1,0 +1,53 @@
+#Change order service running port
+server:
+  port: 8580
+
+spring:
+  application:
+    name: gateways-service
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      server:
+        webflux:
+#          routes:
+#            - id: order-service
+#              uri: lb://order-service #lb = load balance , order-service is application name
+#              predicates:
+#                - Path=/order-service/**
+#              filters:
+#                - RewritePath=/order-service/?(?<segment>.*), /$\{segment}
+          discovery:
+            locator:
+              enabled: true # enable to work with nacos service discovery+
+              lower-case-service-id: true
+          trusted-proxies: ".*" # disable CROS
+
+    nacos:
+      discovery: # spring cloud nacos discovery
+        namespace: ${spring.profiles.active}
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health,info,gateway'
+  endpoint:
+    gateway:
+      access: read_only
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: Order Service
+        url: /order-service/v3/api-docs
+      - name: Customer Service
+        url: /customer-service/v3/api-docs
+      - name: Business Service
+        url: /business-service/v3/api-docs
+      - name: Payment Service
+        url: /payment-service/v3/api-docs

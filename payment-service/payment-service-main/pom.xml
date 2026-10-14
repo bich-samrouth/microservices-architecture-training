@@ -32,6 +32,12 @@
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>payment-service-messaging</artifactId>
         </dependency>
+        <!-- Spring Webmvc API-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>3.1.1</version>
+        </dependency>
         <!-- SPRING WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

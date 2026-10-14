@@ -1,5 +1,6 @@
 server:
-  port: 0
+  port: 8584
+  forward-headers-strategy: framework
 
 spring:
   application:
@@ -26,3 +27,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+#  127.0.0.1:8848 is the address of your Nacos server.
+#  - 127.0.0.1 — the localhost IP address, meaning your own computer.
+#  - 8848 — the port where the Nacos server listens by default.
+#  - server-addr — tells your Spring Boot application where to find the Nacos server.

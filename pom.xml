@@ -20,6 +20,7 @@
         <module>payment-service</module>
         <module>customer-service</module>
         <module>business-service</module>
+        <module>gateway-service</module>
     </modules>
 
     <properties>

@@ -28,6 +28,12 @@
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>customer-application-service</artifactId>
         </dependency>
+        <!--Spring Web MVC API-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>3.1.1</version>
+        </dependency>
         <!-- SPRING WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

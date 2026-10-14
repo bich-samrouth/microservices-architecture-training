@@ -1,6 +1,7 @@
 #Change order service running port
 server:
-  port: 0
+  port: 8582
+  forward-headers-strategy: framework
 
 spring:
   application:
