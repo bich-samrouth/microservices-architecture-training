@@ -11,6 +11,12 @@ spring:
     gateway:
       server:
         webflux:
+          # register router menu
+#          routes:
+#            - id: vuejs
+#              uri: http://[::1]:5173 # http://locahost:5173
+#              predicates:
+#                - Path=/**
 #          routes:
 #            - id: order-service
 #              uri: lb://order-service #lb = load balance , order-service is application name
@@ -20,9 +26,12 @@ spring:
 #                - RewritePath=/order-service/?(?<segment>.*), /$\{segment}
           discovery:
             locator:
-              enabled: true # enable to work with nacos service discovery+
+              enabled: true # enable to work with nacos service discovery
               lower-case-service-id: true
-          trusted-proxies: ".*" # disable CROS
+          trusted-proxies: ".*" # Disable CROS
+          default-filters:
+            - SaveSession
+            - TokenRelay=
 
     nacos:
       discovery: # spring cloud nacos discovery
@@ -31,6 +40,32 @@ spring:
       username: nacos
       password: nacos
 
+  # config oauth2 client
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8888/realms/ecommerce
+        registration:
+          ecommerce-postmen:
+            provider: keycloak
+            client-id: ecommerce-postmen
+            # client-secret: secret
+            scope:
+               - openid
+               - email
+               - profile
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8580/login/oauth2/code/ecommerce-postmen
+
+  # config spring session data redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# config spring actuator
 management:
   endpoints:
     web:
@@ -41,6 +76,9 @@ management:
       access: read_only
 
 springdoc:
+#  enabled when on production
+#  api-docs:
+#    enabled: false
   swagger-ui:
     urls:
       - name: Order Service
@@ -51,3 +89,5 @@ springdoc:
         url: /business-service/v3/api-docs
       - name: Payment Service
         url: /payment-service/v3/api-docs
+      - name: User Service
+        url: /user-service/v3/api-docs

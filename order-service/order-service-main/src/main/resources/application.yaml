@@ -22,11 +22,12 @@ spring:
       username: nacos
       password: nacos
 
+  # config with postgresql
   datasource:
     driver-class-name: org.postgresql.Driver
     username: ecommerce_usr
     password: qwerqwer
-    url: jdbc:postgresql://localhost:8432/db_order
+    url: jdbc:postgresql://localhost:8432/db_user
   jpa:
     hibernate:
       ddl-auto: update
@@ -34,3 +35,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  # config security with keycloak
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8888/realms/ecommerce

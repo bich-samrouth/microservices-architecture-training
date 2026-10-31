@@ -28,7 +28,14 @@ spring:
       hibernate:
         format_sql: true
 
-#  127.0.0.1:8848 is the address of your Nacos server.
+  # config security with keycloak
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8888/realms/ecommerce
+
+#  - 127.0.0.1:8848 is the address of your Nacos server.
 #  - 127.0.0.1 — the localhost IP address, meaning your own computer.
 #  - 8848 — the port where the Nacos server listens by default.
 #  - server-addr — tells your Spring Boot application where to find the Nacos server.

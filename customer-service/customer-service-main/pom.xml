@@ -28,6 +28,11 @@
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>customer-application-service</artifactId>
         </dependency>
+        <!-- Spring Boot OAuth2 Resource Server -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security-oauth2-resource-server</artifactId>
+        </dependency>
         <!--Spring Web MVC API-->
         <dependency>
             <groupId>org.springdoc</groupId>

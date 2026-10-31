@@ -1,0 +1,10 @@
+package co.khmer.samrouth.ecommerce.user.exception;
+
+import co.khmer.samrouth.restapi.exception.GlobalException;
+import org.springframework.http.HttpStatus;
+
+public class KeycloakException extends GlobalException {
+    public KeycloakException(HttpStatus status, String message) {
+        super(status, message);
+    }
+}

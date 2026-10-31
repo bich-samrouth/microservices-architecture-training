@@ -1,4 +1,4 @@
-package co.khmer.samrouth.ecommerce.business.config;
+package co.khmer.samrouth.ecommerce.business;
 
 import co.khmer.samrouth.ecommerce.business.service.BusinessDomainService;
 import co.khmer.samrouth.ecommerce.business.service.BusinessDomainServiceImpl;

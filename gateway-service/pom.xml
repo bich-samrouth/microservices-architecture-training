@@ -12,6 +12,16 @@
     <artifactId>gateway-service</artifactId>
 
     <dependencies>
+        <!--Spring Session Data Redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-session-data-redis</artifactId>
+        </dependency>
+        <!--Spring security oauth2 client-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security-oauth2-client</artifactId>
+        </dependency>
         <!-- Webmvc ui-->
         <dependency>
             <groupId>org.springdoc</groupId>
