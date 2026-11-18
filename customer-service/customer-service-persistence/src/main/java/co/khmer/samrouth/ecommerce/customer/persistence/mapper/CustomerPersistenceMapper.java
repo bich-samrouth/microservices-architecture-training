@@ -1,11 +1,10 @@
 package co.khmer.samrouth.ecommerce.customer.persistence.mapper;
 
+import co.khmer.samrouth.ecommerce.customer.dto.CustomerResult;
 import co.khmer.samrouth.ecommerce.customer.entity.Customer;
 import co.khmer.samrouth.ecommerce.customer.persistence.entity.CustomerEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CustomerPersistenceMapper {
@@ -20,5 +19,5 @@ public interface CustomerPersistenceMapper {
     @Mapping(source = "phoneNumber", target = "phoneNumber.number")
     Customer customerEntityToCustomer(CustomerEntity customerEntity);
 
-    List<Customer> customerEntityListToCustomerList(List<CustomerEntity> customerEntities);
+    CustomerResult toCustomerResult(CustomerEntity customerEntity);
 }

@@ -1,4 +1,4 @@
-package co.khmer.samrouth.customer;
+package co.khmer.samrouth.ecommerce.customer;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class SecurityConfiguration {
         // 1.Endponits (secured, policy, permit)
         http.authorizeHttpRequests(endpoint -> endpoint
                 .requestMatchers("/nacos/config").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
         );
 
         // 2. Stateless

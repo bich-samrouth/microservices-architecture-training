@@ -1,4 +1,4 @@
-package co.khmer.samrouth.customer;
+package co.khmer.samrouth.ecommerce.customer;
 
 import co.khmer.samrouth.ecommerce.customer.service.CustomerDomainService;
 import co.khmer.samrouth.ecommerce.customer.service.CustomerDomainServiceImpl;

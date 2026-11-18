@@ -1,5 +1,6 @@
 package co.khmer.samrouth.ecommerce.user.service.impl;
 
+import co.khmer.samrouth.ecommerce.core.dto.PageResponse;
 import co.khmer.samrouth.ecommerce.user.dto.UserCreateRequest;
 import co.khmer.samrouth.ecommerce.user.dto.UserResponse;
 import co.khmer.samrouth.ecommerce.user.dto.UserUpdateRequest;
@@ -13,7 +14,6 @@ import co.khmer.samrouth.ecommerce.user.repository.UserRepository;
 import co.khmer.samrouth.ecommerce.user.service.KeycloakRoleService;
 import co.khmer.samrouth.ecommerce.user.service.KeycloakUserService;
 import co.khmer.samrouth.ecommerce.user.service.UserService;
-import co.khmer.samrouth.restapi.dto.PageResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.representations.idm.CredentialRepresentation;

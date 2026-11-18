@@ -16,6 +16,7 @@
         <module>common-domain</module>
         <module>common-restapi</module>
         <module>common-persistence</module>
+        <module>common-core</module>
     </modules>
 
 </project>

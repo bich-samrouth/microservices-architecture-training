@@ -1,14 +1,18 @@
 package co.khmer.samrouth.ecommerce.customer.persistence.adapter;
 
+import co.khmer.samrouth.ecommerce.core.dto.PageResponse;
+import co.khmer.samrouth.ecommerce.customer.dto.CustomerResult;
 import co.khmer.samrouth.ecommerce.customer.entity.Customer;
 import co.khmer.samrouth.ecommerce.customer.persistence.entity.CustomerEntity;
 import co.khmer.samrouth.ecommerce.customer.persistence.mapper.CustomerPersistenceMapper;
 import co.khmer.samrouth.ecommerce.customer.persistence.repository.CustomerJpaRepository;
 import co.khmer.samrouth.ecommerce.customer.port.output.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,8 +49,13 @@ public class CustomerRepositoryAdapter implements CustomerRepository {
     }
 
     @Override
-    public List<Customer> findAll() {
-        return customerPersistenceMapper.customerEntityListToCustomerList(customerJpaRepository.findAll());
+    public PageResponse<CustomerResult> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<CustomerEntity> customerEntityPage = customerJpaRepository.findAll(pageable);
+
+        Page<CustomerResult> customerResultPage = customerEntityPage.map(customerPersistenceMapper::toCustomerResult);
+
+        return  null;
     }
 
     @Override

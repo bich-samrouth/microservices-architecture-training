@@ -14,7 +14,7 @@ import co.khmer.samrouth.ecommerce.customer.restapi.mapper.CustomerWebMapper;
 import co.khmer.samrouth.ecommerce.customer.usecase.CreateCustomerUseCase;
 import co.khmer.samrouth.ecommerce.customer.usecase.DeactivateCustomerUseCase;
 import co.khmer.samrouth.ecommerce.customer.usecase.DeleteCustomerUseCase;
-import co.khmer.samrouth.ecommerce.customer.usecase.FindAllCustomersUseCase;
+import co.khmer.samrouth.ecommerce.customer.usecase.GetAllCustomersUseCase;
 import co.khmer.samrouth.ecommerce.customer.usecase.FindCustomerByIdUseCase;
 import co.khmer.samrouth.ecommerce.customer.usecase.UpdateCustomerUseCase;
 import co.khmer.samrouth.ecommerce.order.valueobject.CustomerId;
@@ -43,7 +43,7 @@ class CustomerControllerTest {
     @Mock
     private FindCustomerByIdUseCase findCustomerByIdUseCase;
     @Mock
-    private FindAllCustomersUseCase findAllCustomersUseCase;
+    private GetAllCustomersUseCase findAllCustomersUseCase;
     @Mock
     private UpdateCustomerUseCase updateCustomerUseCase;
     @Mock

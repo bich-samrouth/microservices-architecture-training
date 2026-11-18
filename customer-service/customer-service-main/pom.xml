@@ -28,6 +28,15 @@
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>customer-application-service</artifactId>
         </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>customer-service-client</artifactId>
+        </dependency>
+        <!--Sentinel-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
         <!-- Spring Boot OAuth2 Resource Server -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

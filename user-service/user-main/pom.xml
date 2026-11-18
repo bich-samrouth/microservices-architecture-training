@@ -16,6 +16,11 @@
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>user-controller</artifactId>
         </dependency>
+        <!--Spring Sentinel-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
         <!-- Spring Webmvc API-->
         <dependency>
             <groupId>org.springdoc</groupId>

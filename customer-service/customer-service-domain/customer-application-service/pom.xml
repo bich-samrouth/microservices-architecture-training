@@ -13,13 +13,21 @@
     <dependencies>
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
             <artifactId>customer-domain-core</artifactId>
         </dependency>
         <dependency>
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>common-domain</artifactId>
         </dependency>
-        <!--SPRING VALIDATION-->
+        <dependency>
+            <groupId>co.khmer.samrouth</groupId>
+            <artifactId>customer-service-client</artifactId>
+        </dependency>
+        <!--Spring Validation-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>

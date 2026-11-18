@@ -21,6 +21,12 @@ spring:
       server-addr: 127.0.0.1:8848
       username: nacos
       password: nacos
+    sentinel:
+      transport:
+        dashboard: localhost:8081
+        port: 8719
+      eager: true
+      web-context-unify: false
 
   # config with postgresql
   datasource:

@@ -7,6 +7,10 @@ spring:
     name: gateways-service
   profiles:
     active: dev
+  config:
+    import:
+      - nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+
   cloud:
     gateway:
       server:
@@ -34,11 +38,38 @@ spring:
             - TokenRelay=
 
     nacos:
+      config:
+        file-extension: yaml
+        namespace: ${spring.profiles.active}
       discovery: # spring cloud nacos discovery
         namespace: ${spring.profiles.active}
       server-addr: 127.0.0.1:8848
       username: nacos
       password: nacos
+
+    sentinel:
+      transport:
+        dashboard: localhost:8081
+        port: 8719
+      eager: true
+      web-context-unify: false
+      datasource:
+        sentinel-flow:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            data-id: sentinel-flow
+            namespace: dev
+            group-id: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+        sentinel-degrade:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            data-id: sentinel-degrade
+            namespace: ${spring.profiles.active}
+            group-id: DEFAULT_GROUP
+            data-type: json
+            rule-type: degrade
 
   # config oauth2 client
   security:

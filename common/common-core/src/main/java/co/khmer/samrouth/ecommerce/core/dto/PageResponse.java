@@ -1,4 +1,4 @@
-package co.khmer.samrouth.restapi.dto;
+package co.khmer.samrouth.ecommerce.core.dto;
 
 import lombok.Builder;
 

@@ -17,7 +17,7 @@ public class KeycloakAdminClientConfig {
                 .serverUrl("http://localhost:8888")
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
                 .clientId("ecommerce-admin-client")
-                .clientSecret("khyHXn1lIzbGn5mU18M5XvxTfrAOIknLTmk4bVBgH85njvUq8RZBvsEuyCA05qkyHZ1rXJm0KcLNmQOrOD0eUQ")
+                .clientSecret("GpPogs67bMsNCkrPCuG76LMsLXCqqz3zWlLODMIF6FLBhzONeKKjQp2CVpk9vchwD4Ql7A2cbMO9WjuFnWisaY")
                 .realm(REALM_NAME)
                 .build();
     }

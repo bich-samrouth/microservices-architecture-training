@@ -40,6 +40,11 @@
             <!--Inject dependency common domain-->
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>
+                <artifactId>common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
                 <artifactId>common-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -154,6 +159,11 @@
             <dependency>
                 <groupId>co.khmer.samrouth</groupId>
                 <artifactId>customer-service-restapi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>co.khmer.samrouth</groupId>
+                <artifactId>customer-service-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--  Inject dependency business service -->

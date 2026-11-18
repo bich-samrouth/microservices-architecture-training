@@ -7,7 +7,6 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.springframework.stereotype.Service;
 
-import javax.management.relation.Role;
 import java.util.Arrays;
 import java.util.List;
 

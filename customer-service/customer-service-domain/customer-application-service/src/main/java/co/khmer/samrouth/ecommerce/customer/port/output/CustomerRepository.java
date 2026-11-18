@@ -1,5 +1,7 @@
 package co.khmer.samrouth.ecommerce.customer.port.output;
 
+import co.khmer.samrouth.ecommerce.core.dto.PageResponse;
+import co.khmer.samrouth.ecommerce.customer.dto.CustomerResult;
 import co.khmer.samrouth.ecommerce.customer.entity.Customer;
 
 import java.util.List;
@@ -11,7 +13,7 @@ public interface CustomerRepository {
     Optional<Customer> findById(UUID customerId);
     Optional<Customer> findByUsername(String username);
     Optional<Customer> findByEmail(String email);
-    List<Customer> findAll();
+    PageResponse<CustomerResult> findAll(int page, int size);
     void deleteById(UUID customerId);
     boolean existsById(UUID customerId);
     boolean existsByUsername(String username);

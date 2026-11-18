@@ -1,13 +1,12 @@
 package co.khmer.samrouth.ecommerce.user.controller;
 
+import co.khmer.samrouth.ecommerce.core.dto.PageResponse;
 import co.khmer.samrouth.ecommerce.user.dto.UserCreateRequest;
 import co.khmer.samrouth.ecommerce.user.dto.UserResponse;
 import co.khmer.samrouth.ecommerce.user.dto.UserUpdateRequest;
 import co.khmer.samrouth.ecommerce.user.service.UserService;
-import co.khmer.samrouth.restapi.dto.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +59,5 @@ public class UserController {
     public void deleteById(@PathVariable String id) {
         userService.deleteById(id);
     }
-
 
 }
