@@ -32,6 +32,11 @@
             <groupId>co.khmer.samrouth</groupId>
             <artifactId>customer-service-client</artifactId>
         </dependency>
+        <!--Redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--Sentinel-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

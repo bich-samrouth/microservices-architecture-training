@@ -20,6 +20,7 @@ spring:
         port: 8719
       eager: true
       web-context-unify: false
+  # database config
   datasource:
     driver-class-name: org.postgresql.Driver
     username: ecommerce_usr

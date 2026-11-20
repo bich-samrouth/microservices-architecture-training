@@ -1,13 +1,15 @@
 package co.khmer.samrouth.ecommerce.customer.usecase;
 
+import co.khmer.samrouth.ecommerce.customer.dto.CustomerResult;
 import co.khmer.samrouth.ecommerce.customer.dto.UpdateCustomerCommand;
 import co.khmer.samrouth.ecommerce.customer.dto.UpdateCustomerResult;
 import co.khmer.samrouth.ecommerce.customer.entity.Customer;
-import co.khmer.samrouth.ecommerce.customer.exception.CustomerAlreadyExistsException;
+import co.khmer.samrouth.ecommerce.customer.event.CustomerUpdatedEvent;
 import co.khmer.samrouth.ecommerce.customer.exception.CustomerDomainException;
-import co.khmer.samrouth.ecommerce.customer.exception.CustomerNotFoundException;
+import co.khmer.samrouth.ecommerce.customer.mapper.CustomerDomainMapper;
 import co.khmer.samrouth.ecommerce.customer.port.output.CustomerRepository;
 import co.khmer.samrouth.ecommerce.customer.service.CustomerDomainService;
+import co.khmer.samrouth.ecommerce.order.valueobject.CustomerId;
 import co.khmer.samrouth.ecommerce.order.valueobject.Email;
 import co.khmer.samrouth.ecommerce.order.valueobject.PhoneNumber;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
+// Use case: change an existing customer's name, email and phone number.
+// Called by the REST API controller (PUT /api/v1/customers/{customerId}).
+// Flow: load customer -> check new email -> domain updates -> save -> return id
 @Component
 @Slf4j
 @RequiredArgsConstructor
@@ -24,36 +27,34 @@ public class UpdateCustomerUseCase {
 
     private final CustomerDomainService customerDomainService;
     private final CustomerRepository customerRepository;
+    private final CustomerDomainMapper customerDomainMapper;
 
     @Transactional
     public UpdateCustomerResult execute(UpdateCustomerCommand updateCustomerCommand) {
-        log.info("Executing update customer for ID: {}", updateCustomerCommand.customerId());
 
-        Customer customer = customerRepository.findById(updateCustomerCommand.customerId())
-                .orElseThrow(() -> new CustomerNotFoundException("Could not find customer with ID: " + updateCustomerCommand.customerId()));
+        Customer customer = customerRepository.findById(new CustomerId(updateCustomerCommand.customerId()))
+                .orElseThrow(() -> new CustomerDomainException(
+                        "Customer not found: " + updateCustomerCommand.customerId()));
 
-        // Check email uniqueness if email is changed
-        if (updateCustomerCommand.email() != null && !updateCustomerCommand.email().equals(customer.getEmail().value())) {
-            Optional<Customer> existingCustomerWithEmail = customerRepository.findByEmail(updateCustomerCommand.email());
-            if (existingCustomerWithEmail.isPresent() && !existingCustomerWithEmail.get().getId().equals(customer.getId())) {
-                throw new CustomerAlreadyExistsException("Customer with email '" + updateCustomerCommand.email() + "' already exists!");
-            }
+        Email newEmail = new Email(updateCustomerCommand.email());
+
+        if (!newEmail.equals(customer.getEmail()) && customerRepository.existsByEmail(newEmail.value())) {
+            throw new CustomerDomainException("Email already exists");
         }
 
-        customerDomainService.updateCustomer(
-                customer,
+        customer.updateCustomer(
                 updateCustomerCommand.familyName(),
                 updateCustomerCommand.givenName(),
-                new Email(updateCustomerCommand.email()),
+                newEmail,
                 new PhoneNumber(updateCustomerCommand.phoneNumber())
         );
 
-        Customer savedCustomer = customerRepository.save(customer);
-        if (savedCustomer == null) {
-            throw new CustomerDomainException("Could not update customer into database!");
-        }
+        CustomerUpdatedEvent customerUpdatedEvent = customerDomainService.updateCustomer(customer);
+        CustomerResult savedCustomer = customerRepository.save(customer);
 
-        log.info("Customer with ID: {} updated successfully", savedCustomer.getId().value());
-        return new UpdateCustomerResult(savedCustomer.getId().value());
+        log.info("Customer updated with id: {} at {}",
+                savedCustomer.id(), customerUpdatedEvent.getUpdatedAt());
+        return new UpdateCustomerResult(savedCustomer.id());
     }
 }
+

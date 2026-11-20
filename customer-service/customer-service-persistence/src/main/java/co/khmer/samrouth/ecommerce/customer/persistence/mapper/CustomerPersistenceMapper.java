@@ -9,15 +9,18 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface CustomerPersistenceMapper {
 
-    @Mapping(source = "id.value", target = "id")
-    @Mapping(source = "email.value", target = "email")
-    @Mapping(source = "phoneNumber.number", target = "phoneNumber")
+    @Mapping(source="id.value", target = "id")
+    @Mapping(source="email.value", target = "email")
+    @Mapping(source="phoneNumber.number", target = "phoneNumber")
     CustomerEntity customerToCustomerEntity(Customer customer);
 
-    @Mapping(source = "id", target = "id.value")
-    @Mapping(source = "email", target = "email.value")
+
+    @Mapping(source="id", target = "id.value")
+    @Mapping(source="email", target = "email.value")
     @Mapping(source = "phoneNumber", target = "phoneNumber.number")
     Customer customerEntityToCustomer(CustomerEntity customerEntity);
 
     CustomerResult toCustomerResult(CustomerEntity customerEntity);
+
+    CustomerResult customerEntityToCustomerResult(CustomerEntity customerEntity);
 }

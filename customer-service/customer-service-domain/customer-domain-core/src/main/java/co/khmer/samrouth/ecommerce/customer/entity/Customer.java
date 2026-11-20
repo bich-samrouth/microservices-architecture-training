@@ -11,85 +11,14 @@ import co.khmer.samrouth.ecommerce.order.valueobject.PhoneNumber;
 import java.util.UUID;
 
 public class Customer extends AggregateRoot<CustomerId> {
-    private String username;
+
+    private final String username;
     private String familyName;
     private String givenName;
     private Email email;
     private PhoneNumber phoneNumber;
     private LoyaltyTier loyaltyTier;
     private CustomerStatus status;
-
-    private Customer(Builder builder) {
-        super.setId(builder.id);
-        this.username = builder.username;
-        this.familyName = builder.familyName;
-        this.givenName = builder.givenName;
-        this.email = builder.email;
-        this.phoneNumber = builder.phoneNumber;
-        this.loyaltyTier = builder.loyaltyTier;
-        this.status = builder.status;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    public void initializeCustomer() {
-        if (getId() == null) {
-            setId(new CustomerId(UUID.randomUUID()));
-        }
-        this.status = CustomerStatus.ACTIVE;
-        if (this.loyaltyTier == null) {
-            this.loyaltyTier = LoyaltyTier.BRONZE;
-        }
-    }
-
-    public void validateCustomer() {
-        validateInitialCustomer();
-    }
-
-    private void validateInitialCustomer() {
-        if (getId() == null) {
-            throw new CustomerDomainException("Customer id is not initialized!");
-        }
-        if (username == null || username.trim().isEmpty()) {
-            throw new CustomerDomainException("Customer username cannot be empty!");
-        }
-        if (email == null || email.value() == null || email.value().trim().isEmpty()) {
-            throw new CustomerDomainException("Customer email cannot be empty!");
-        }
-    }
-
-    public void updateDetails(String familyName, String givenName, Email email, PhoneNumber phoneNumber) {
-        if (email == null || email.value() == null || email.value().trim().isEmpty()) {
-            throw new CustomerDomainException("Customer email cannot be empty!");
-        }
-        this.familyName = familyName;
-        this.givenName = givenName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void updateLoyaltyTier(LoyaltyTier loyaltyTier) {
-        if (loyaltyTier == null) {
-            throw new CustomerDomainException("Loyalty tier cannot be null!");
-        }
-        this.loyaltyTier = loyaltyTier;
-    }
-
-    public void deactivate() {
-        if (this.status == CustomerStatus.INACTIVE) {
-            throw new CustomerDomainException("Customer is already inactive!");
-        }
-        this.status = CustomerStatus.INACTIVE;
-    }
-
-    public void activate() {
-        if (this.status == CustomerStatus.ACTIVE) {
-            throw new CustomerDomainException("Customer is already active!");
-        }
-        this.status = CustomerStatus.ACTIVE;
-    }
 
     public String getUsername() {
         return username;
@@ -117,6 +46,75 @@ public class Customer extends AggregateRoot<CustomerId> {
 
     public CustomerStatus getStatus() {
         return status;
+    }
+
+    public void validateCustomer(){
+        validateInitialCustomer();
+        validateUsername(username);
+        validateEmail(email);
+    }
+
+    private void validateEmail(Email email) {
+        if (email == null || isBlank(email.value())){
+            throw new CustomerDomainException("Email is not valid");
+        }
+    }
+
+    private void validateUsername(String username) {
+        if (isBlank(username)) {
+            throw new CustomerDomainException("Username is required");
+        }
+    }
+
+    private void validateInitialCustomer() {
+        if(status != null || super.getId() != null){
+            throw new CustomerDomainException("Customer already exists");
+        }
+    }
+
+    private static boolean isBlank(String value) {
+        return value == null || value.isBlank();
+    }
+
+    public void initiateCustomer(){
+        setId(new CustomerId(UUID.randomUUID()));
+        status = CustomerStatus.ACTIVE;
+        if(loyaltyTier == null){
+            loyaltyTier = LoyaltyTier.BRONZE;
+        }
+    }
+
+    public void updateCustomer(String familyName, String givenName, Email email, PhoneNumber phoneNumber){
+        if(status != CustomerStatus.ACTIVE){
+            throw new CustomerDomainException("Customer can not be updated");
+        }
+        validateEmail(email);
+        this.familyName = familyName;
+        this.givenName = givenName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void deactivateCustomer(){
+        if(status != CustomerStatus.ACTIVE){
+            throw new CustomerDomainException("Customer is already deactivated");
+        }
+        status = CustomerStatus.INACTIVE;
+    }
+
+    private Customer(Builder builder) {
+        super.setId(builder.id);
+        username = builder.username;
+        familyName = builder.familyName;
+        givenName = builder.givenName;
+        email = builder.email;
+        phoneNumber = builder.phoneNumber;
+        loyaltyTier = builder.loyaltyTier;
+        status = builder.status;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static final class Builder {

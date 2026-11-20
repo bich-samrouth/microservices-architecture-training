@@ -1,10 +1,7 @@
 package co.khmer.samrouth.ecommerce.customer.restapi.mapper;
 
-import co.khmer.samrouth.ecommerce.customer.dto.CreateCustomerCommand;
-import co.khmer.samrouth.ecommerce.customer.dto.CreateCustomerResult;
-import co.khmer.samrouth.ecommerce.customer.dto.UpdateCustomerCommand;
-import co.khmer.samrouth.ecommerce.customer.dto.UpdateCustomerResult;
-import co.khmer.samrouth.ecommerce.customer.entity.Customer;
+import co.khmer.samrouth.ecommerce.core.dto.PageResponse;
+import co.khmer.samrouth.ecommerce.customer.dto.*;
 import co.khmer.samrouth.ecommerce.customer.restapi.dto.CustomerCreateRequest;
 import co.khmer.samrouth.ecommerce.customer.restapi.dto.CustomerCreateResponse;
 import co.khmer.samrouth.ecommerce.customer.restapi.dto.CustomerResponse;
@@ -13,25 +10,22 @@ import co.khmer.samrouth.ecommerce.customer.restapi.dto.CustomerUpdateResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.List;
 import java.util.UUID;
 
 @Mapper(componentModel = "spring")
 public interface CustomerWebMapper {
 
-    CreateCustomerCommand customerCreateRequestToCreateCustomerCommand(CustomerCreateRequest request);
+    CustomerResponse toCustomerResponse(CustomerResult customerResult);
 
-    CustomerCreateResponse createCustomerResultToCustomerCreateResponse(CreateCustomerResult result);
+    CreateCustomerCommand customerCreateRequestToCreateCustomerCommand(CustomerCreateRequest customerCreateRequest);
 
-    @Mapping(target = "customerId", source = "customerId")
-    UpdateCustomerCommand customerUpdateRequestToUpdateCustomerCommand(UUID customerId, CustomerUpdateRequest request);
+    CustomerCreateResponse createCustomerResultToCustomerCreateResponse(CreateCustomerResult createCustomerResult);
 
-    CustomerUpdateResponse updateCustomerResultToCustomerUpdateResponse(UpdateCustomerResult result);
+    // customerId comes from the path, the rest from the request body
+    @Mapping(source = "customerId", target = "customerId")
+    UpdateCustomerCommand customerUpdateRequestToUpdateCustomerCommand(UUID customerId, CustomerUpdateRequest customerUpdateRequest);
 
-    @Mapping(source = "id.value", target = "id")
-    @Mapping(source = "email.value", target = "email")
-    @Mapping(source = "phoneNumber.number", target = "phoneNumber")
-    CustomerResponse customerToCustomerResponse(Customer customer);
+    CustomerUpdateResponse updateCustomerResultToCustomerUpdateResponse(UpdateCustomerResult updateCustomerResult);
 
-    List<CustomerResponse> customerListToCustomerResponseList(List<Customer> customers);
+    PageResponse<CustomerResponse> toCustomerResponse(PageResponse<CustomerResult> result);
 }
